@@ -6,29 +6,83 @@ from typing import List
 
 
 def convert_to_absolute(number: float) -> float:
-    return 0
+    if (number < 0):
+        return number * -1
+    return number
 
 
 def use_prefixes() -> List[str]:
     prefixes, suffixe = 'JKLMNOPQ', 'ack'
-
-    return [""]
+    noms = list()
+    for i in range(0, len(prefixes), 1):
+        nom = prefixes[i] + suffixe
+        noms.append(nom)
+    return noms
 
 
 def prime_integer_summation() -> int:
-    return 0
+    countPrimes = 0
+    total = 0
+    currentNumber = 2
+    isNotPrime = True
+    while(countPrimes < 100):
+        isNotPrime = True
+        if(currentNumber != 2 and currentNumber % 2 == 0): 
+            isNotPrime = False
+        else:
+            for i in range(1, int(currentNumber/2), 1):
+                if(i != 1 and currentNumber % i == 0):
+                    isNotPrime = False
+                    break
+        if(isNotPrime):
+            countPrimes += 1
+            total += currentNumber
+        currentNumber += 1
+    return total
 
 
 def factorial(number: int) -> int:
-    return 0
+    total = 1
+    for i in range(1, number + 1, 1):
+        total = total * i
+    return total
 
 
 def use_continue() -> None:
-    pass
+    for i in range(1, 11, 1):
+        if(i == 5):
+            continue
+        print(i)
 
 
 def verify_ages(groups: List[List[int]]) -> List[bool]:
-    return []
+    verified = list()
+    for i in range(0, len(groups), 1):
+        if(len(groups[i]) < 3 or len(groups[i]) > 10):
+            verified.append(False)
+        else:
+            has25yo = False
+            hasUnder18yo = False
+            has50yo = False
+            hasOver70yo = False
+            for i2 in range(0, len(groups[i]), 1):
+                if(groups[i][i2] == 25):
+                    has25yo = True
+                elif(groups[i][i2] < 18):
+                    hasUnder18yo = True
+                elif(groups[i][i2] == 50):
+                    has50yo = True
+                elif(groups[i][i2] > 70):
+                    hasOver70yo = True
+            if(has25yo):
+                verified.append(True)
+            elif(hasUnder18yo):
+                verified.append(False)
+            elif(hasOver70yo and has50yo):
+                verified.append(False)
+            else:
+                verified.append(True)
+    return verified
 
 
 def main() -> None:
